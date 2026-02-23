@@ -1,0 +1,9 @@
+{
+  "appId": "com.dnclan.chat",
+  "appName": "DN Clan Chat",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}
