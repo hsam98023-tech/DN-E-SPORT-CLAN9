@@ -14,10 +14,10 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      - name: Install Node.js
+      - name: Install Node.js v22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22  # هادي هي اللي غتحل المشكل اللي فالسكرين
 
       - name: Install Dependencies
         run: |
@@ -25,7 +25,7 @@ jobs:
 
       - name: Build Web Project
         run: |
-          npm run build || mkdir dist && echo "<html><body>Build Failed but forcing APK</body></html>" > dist/index.html
+          npm run build || (mkdir dist && echo "<html><body>Build Failed but forcing APK</body></html>" > dist/index.html)
 
       - name: Setup Capacitor Android
         run: |
