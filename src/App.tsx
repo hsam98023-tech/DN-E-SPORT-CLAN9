@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { auth, db } from './firebase'; // تمت إزالة storage لأننا لن نحتاجه
+import { auth, db } from './firebase'; 
 import { 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
@@ -18,7 +18,7 @@ import {
   remove,
   set
 } from 'firebase/database';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; // إضافة مكتبة الكاميرا
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { 
   LogOut, 
   Settings, 
@@ -132,8 +132,8 @@ function MainApp() {
 
   if (loading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-bg-deep text-text-main" dir="rtl">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      <div className="h-screen w-screen flex items-center justify-center bg-[#0f0f0f] text-indigo-500" dir="rtl">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
       </div>
     );
   }
@@ -143,7 +143,7 @@ function MainApp() {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-bg-deep text-text-main overflow-hidden" dir="rtl">
+    <div className="h-screen w-screen flex flex-col bg-[#0f0f0f] text-white overflow-hidden transition-colors" dir="rtl">
       {currentView === 'chat' && <ChatView user={user} userRole={userRole} onNavigate={setCurrentView} />}
       {currentView === 'settings' && <SettingsView user={user} onNavigate={setCurrentView} />}
       {currentView === 'group' && <GroupView onNavigate={setCurrentView} />}
@@ -187,11 +187,11 @@ function AuthView() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-bg-deep p-6" dir="rtl">
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-[#0f0f0f] p-6 text-white" dir="rtl">
       <div className="w-full max-w-md flex flex-col items-center space-y-12">
         <div className="flex flex-col items-center">
-          <h1 className="text-6xl font-black text-primary tracking-tighter flex flex-col items-center leading-none">
-            <span className="text-primary text-7xl">DN</span>
+          <h1 className="text-6xl font-black text-indigo-500 tracking-tighter flex flex-col items-center leading-none">
+            <span className="text-indigo-500 text-7xl">DN</span>
             <span className="text-white text-5xl mt-[-5px]">CLAN</span>
           </h1>
         </div>
@@ -199,21 +199,21 @@ function AuthView() {
         <form onSubmit={handleSubmit} className="w-full space-y-6">
           {!isLogin && (
             <div className="space-y-2">
-              <label className="text-sm font-semibold text-text-main">اسم العرض</label>
-              <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} className="w-full bg-transparent border-b border-text-muted/30 text-text-main px-2 py-2 outline-none focus:border-primary transition-colors text-[16px]" placeholder="اسم العرض" required={!isLogin} />
+              <label className="text-sm font-semibold text-gray-300">اسم العرض</label>
+              <input type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} className="w-full bg-transparent border-b border-gray-600 text-white px-2 py-2 outline-none focus:border-indigo-500 transition-colors text-[16px]" placeholder="اسم العرض" required={!isLogin} />
             </div>
           )}
           
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-text-main">البريد الإلكتروني</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-transparent border-b border-text-muted/30 text-text-main px-2 py-2 outline-none focus:border-primary transition-colors text-[16px]" placeholder="البريد الإلكتروني" required />
+            <label className="text-sm font-semibold text-gray-300">البريد الإلكتروني</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-transparent border-b border-gray-600 text-white px-2 py-2 outline-none focus:border-indigo-500 transition-colors text-[16px]" placeholder="البريد الإلكتروني" required />
           </div>
 
           <div className="space-y-2 relative">
-            <label className="text-sm font-semibold text-text-main">كلمة المرور</label>
+            <label className="text-sm font-semibold text-gray-300">كلمة المرور</label>
             <div className="relative">
-              <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-transparent border-b border-text-muted/30 text-text-main px-2 py-2 outline-none focus:border-primary transition-colors text-[16px]" placeholder="كلمة المرور" required />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute left-2 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-main">
+              <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-transparent border-b border-gray-600 text-white px-2 py-2 outline-none focus:border-indigo-500 transition-colors text-[16px]" placeholder="كلمة المرور" required />
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
@@ -221,12 +221,12 @@ function AuthView() {
 
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
-          <button type="submit" disabled={loading} className="w-full bg-primary hover:bg-indigo-600 text-white font-semibold py-3 rounded-md transition-colors mt-8 disabled:opacity-50">
+          <button type="submit" disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition-colors mt-8 disabled:opacity-50">
             {loading ? 'جاري التحميل...' : isLogin ? 'تسجيل الدخول' : 'إنشاء حساب'}
           </button>
         </form>
 
-        <button onClick={() => setIsLogin(!isLogin)} className="text-primary hover:underline text-sm font-medium">
+        <button onClick={() => setIsLogin(!isLogin)} className="text-indigo-400 hover:underline text-sm font-medium">
           {isLogin ? 'ليس لديك حساب؟ إنشاء حساب' : 'لديك حساب بالفعل؟ تسجيل الدخول'}
         </button>
       </div>
@@ -263,25 +263,25 @@ function MessageItem({ msg, isMe, showAvatar, onReply, onDelete, currentUserRole
         <div className={cn("flex flex-col", isMe ? "items-start" : "items-end")}>
           {showAvatar && !isMe && (
             <div className="flex items-center mb-1 ml-2">
-              <span className="text-xs text-text-muted">{msg.displayName}</span>
+              <span className="text-xs text-gray-400">{msg.displayName}</span>
               {getRoleBadge(msg.role)}
             </div>
           )}
           {showAvatar && isMe && (
             <div className="flex items-center mb-1 mr-2">
               {getRoleBadge(msg.role)}
-              <span className="text-xs text-text-muted">{msg.displayName}</span>
+              <span className="text-xs text-gray-400">{msg.displayName}</span>
             </div>
           )}
           <div className="flex items-center gap-2">
             {!isMe && (
               <div className="opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-1">
-                {canDelete && <button onClick={() => onDelete(msg.id)} className="text-text-muted hover:text-red-500 p-1"><Trash2 size={16} /></button>}
-                <button onClick={() => onReply(msg)} className="text-text-muted hover:text-text-main p-1"><Reply size={16} /></button>
+                {canDelete && <button onClick={() => onDelete(msg.id)} className="text-gray-400 hover:text-red-500 p-1"><Trash2 size={16} /></button>}
+                <button onClick={() => onReply(msg)} className="text-gray-400 hover:text-white p-1"><Reply size={16} /></button>
               </div>
             )}
             
-            <div className={cn("px-4 py-2 rounded-2xl relative", isMe ? "bg-primary text-bubble-right-text rounded-br-sm" : "bg-bubble-left text-text-main rounded-bl-sm")}>
+            <div className={cn("px-4 py-2 rounded-2xl relative", isMe ? "bg-indigo-600 text-white rounded-br-sm" : "bg-[#2a2a2a] text-white rounded-bl-sm")}>
               {msg.replyTo && (
                 <div className="mb-2 pl-2 pr-2 border-r-2 border-white/30 text-sm opacity-80 bg-black/10 py-1 rounded flex flex-col items-start">
                   <span className="font-semibold text-[10px]">{msg.replyTo.sender}</span>
@@ -301,8 +301,8 @@ function MessageItem({ msg, isMe, showAvatar, onReply, onDelete, currentUserRole
 
             {isMe && (
               <div className="opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-1">
-                <button onClick={() => onDelete(msg.id)} className="text-text-muted hover:text-red-500 p-1"><Trash2 size={16} /></button>
-                <button onClick={() => onReply(msg)} className="text-text-muted hover:text-text-main p-1"><Reply size={16} /></button>
+                <button onClick={() => onDelete(msg.id)} className="text-gray-400 hover:text-red-500 p-1"><Trash2 size={16} /></button>
+                <button onClick={() => onReply(msg)} className="text-gray-400 hover:text-white p-1"><Reply size={16} /></button>
               </div>
             )}
           </div>
@@ -395,7 +395,7 @@ function ChatView({ user, userRole, onNavigate }: { user: User; userRole: string
     try {
       setUploading(true);
       const image = await Camera.getPhoto({
-        quality: 50, // جودة 50 لتقليل حجم البيانات
+        quality: 50,
         allowEditing: false,
         resultType: CameraResultType.Base64,
         source: CameraSource.Photos
@@ -406,7 +406,7 @@ function ChatView({ user, userRole, onNavigate }: { user: User; userRole: string
         
         await push(dbRef(db, 'messages'), {
           text: '',
-          imageUrl: base64Data, // نرسل الصورة كنص مباشرة في الرسالة
+          imageUrl: base64Data, 
           uid: user.uid,
           displayName: user.displayName || 'مستخدم',
           photoURL: user.photoURL || '',
@@ -422,24 +422,24 @@ function ChatView({ user, userRole, onNavigate }: { user: User; userRole: string
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-bg-main">
+    <div className="flex flex-col h-full w-full bg-[#0a0a0a]">
       {/* Header */}
-      <div className="h-14 bg-bg-header flex items-center justify-between px-4 shadow-md z-10 shrink-0">
+      <div className="h-14 bg-[#141414] flex items-center justify-between px-4 shadow-md z-10 shrink-0">
         <div className="flex items-center space-x-4 space-x-reverse">
-          <button onClick={() => onNavigate('group')} className="text-text-muted hover:text-text-main">
+          <button onClick={() => onNavigate('group')} className="text-gray-400 hover:text-white">
             <Users size={24} />
           </button>
           <div className="flex items-center space-x-2 space-x-reverse">
-            <h1 className="text-xl font-black text-primary tracking-tighter flex items-center leading-none">
-              <span className="text-primary">DN</span>
+            <h1 className="text-xl font-black text-indigo-500 tracking-tighter flex items-center leading-none">
+              <span className="text-indigo-500">DN</span>
               <span className="text-white ml-1">CLAN</span>
             </h1>
-            <span className="text-text-muted mx-2">|</span>
-            <h2 className="font-bold text-sm">الدردشة العامة</h2>
+            <span className="text-gray-600 mx-2">|</span>
+            <h2 className="font-bold text-sm text-gray-300">الدردشة العامة</h2>
           </div>
         </div>
         <div className="flex items-center space-x-3 space-x-reverse">
-          <button onClick={() => onNavigate('settings')} className="text-text-muted hover:text-text-main">
+          <button onClick={() => onNavigate('settings')} className="text-gray-400 hover:text-white">
             <Settings size={24} />
           </button>
         </div>
@@ -467,30 +467,30 @@ function ChatView({ user, userRole, onNavigate }: { user: User; userRole: string
       </div>
 
       {/* Input Area */}
-      <div className="bg-bg-main p-4 shrink-0 flex flex-col gap-2" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
+      <div className="bg-[#0a0a0a] p-4 shrink-0 flex flex-col gap-2" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
         {replyingTo && (
-          <div className="bg-bg-header px-4 py-2 flex items-center justify-between border-r-4 border-primary rounded-md">
+          <div className="bg-[#1a1a1a] px-4 py-2 flex items-center justify-between border-r-4 border-indigo-500 rounded-md">
             <div className="flex flex-col">
-              <span className="text-xs text-primary font-semibold">الرد على {replyingTo.displayName}</span>
-              <span className="text-sm text-text-muted truncate max-w-[200px]">{replyingTo.text || 'صورة'}</span>
+              <span className="text-xs text-indigo-400 font-semibold">الرد على {replyingTo.displayName}</span>
+              <span className="text-sm text-gray-300 truncate max-w-[200px]">{replyingTo.text || 'صورة'}</span>
             </div>
-            <button onClick={() => setReplyingTo(null)} className="text-text-muted hover:text-text-main p-1">
+            <button onClick={() => setReplyingTo(null)} className="text-gray-400 hover:text-white p-1">
               <X size={18} />
             </button>
           </div>
         )}
-        <form onSubmit={handleSendMessage} className="flex items-center bg-bg-header rounded-full px-4 py-2">
-          <button type="button" className="text-text-muted hover:text-text-main p-2 shrink-0">
+        <form onSubmit={handleSendMessage} className="flex items-center bg-[#1a1a1a] rounded-full px-4 py-2 border border-white/5">
+          <button type="button" className="text-gray-400 hover:text-white p-2 shrink-0">
             <Smile size={24} />
           </button>
           
-          <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder="اكتب رسالة..." className="flex-1 bg-transparent text-text-main outline-none px-2 text-[16px]" />
+          <input type="text" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder="اكتب رسالة..." className="flex-1 bg-transparent text-white outline-none px-2 text-[16px]" />
           
-          <button type="button" onClick={handleImageUpload} className="text-text-muted hover:text-text-main p-2 shrink-0" disabled={uploading}>
-            {uploading ? <div className="animate-spin w-5 h-5 border-2 border-primary rounded-full"></div> : <ImageIcon size={24} />}
+          <button type="button" onClick={handleImageUpload} className="text-gray-400 hover:text-white p-2 shrink-0" disabled={uploading}>
+            {uploading ? <div className="animate-spin w-5 h-5 border-2 border-indigo-500 rounded-full"></div> : <ImageIcon size={24} />}
           </button>
           
-          <button type="submit" disabled={!newMessage.trim() && !uploading} className="text-primary disabled:text-text-muted p-2 shrink-0">
+          <button type="submit" disabled={!newMessage.trim() && !uploading} className="text-indigo-500 disabled:text-gray-600 p-2 shrink-0">
             <Send size={24} />
           </button>
         </form>
@@ -504,16 +504,20 @@ function SettingsView({ user, onNavigate }: { user: User; onNavigate: (view: 'ch
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="h-full flex flex-col bg-bg-main w-full p-4 overflow-y-auto">
+    <div className="h-full flex flex-col bg-[#0a0a0a] text-white w-full p-6 overflow-y-auto">
       <div className="flex items-center justify-between mb-8">
-        <button onClick={() => onNavigate('chat')} className="text-text-muted hover:text-text-main">
+        <button onClick={() => onNavigate('chat')} className="text-gray-400 hover:text-white">
           <ArrowRight size={28} />
         </button>
-        <h2 className="text-xl font-bold">الإعدادات</h2>
+        <h2 className="text-xl font-bold">إعدادات الحساب</h2>
         <div className="w-7"></div>
       </div>
 
-      <div className="flex flex-col items-center mb-8">
-        <img src={user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName}`} alt="Profile" className="w-24 h-24 rounded-full mb-4 border-2 border-primary object-cover" />
+      <div className="flex flex-col items-center mb-10">
+        <img src={user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName}`} alt="Profile" className="w-28 h-28 rounded-full mb-4 border-4 border-indigo-500 object-cover shadow-lg" />
         <h3 className="text-2xl font-bold">{user.displayName}</h3>
-        <p className="text-text-muted">{user.emai
+        <p className="text-gray-400">{user.email}</p>
+      </div>
+
+      <div className="space-y-6">
+        <div className="bg-[#1a1a1a] p-5 roun
