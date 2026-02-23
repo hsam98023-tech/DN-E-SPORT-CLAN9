@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: var(--theme-bg-deep);
+  --color-bg-header: var(--theme-bg-header);
+  --color-bg-main: var(--theme-bg-main);
+  --color-primary: var(--theme-primary);
+  --color-text-main: var(--theme-text-main);
+  --color-text-muted: var(--theme-text-muted);
+  --color-bubble-left: var(--theme-bubble-left);
+  --color-bubble-right-text: var(--theme-bubble-right-text);
+}
+
+@layer base {
+  :root {
+    /* Discord Dark (Default) */
+    --theme-bg-deep: #202225;
+    --theme-bg-header: #2f3136;
+    --theme-bg-main: #36393f;
+    --theme-primary: #5865F2;
+    --theme-text-main: #dcddde;
+    --theme-text-muted: #72767d;
+    --theme-bubble-left: #4f545c;
+    --theme-bubble-right-text: #ffffff;
+  }
+
+  :root[data-theme="light"] {
+    /* Modern Light */
+    --theme-bg-deep: #f2f3f5;
+    --theme-bg-header: #e3e5e8;
+    --theme-bg-main: #ffffff;
+    --theme-primary: #5865F2;
+    --theme-text-main: #2e3338;
+    --theme-text-muted: #72767d;
+    --theme-bubble-left: #f2f3f5;
+    --theme-bubble-right-text: #ffffff;
+  }
+
+  :root[data-theme="gold"] {
+    /* Clan Gold/Black */
+    --theme-bg-deep: #000000;
+    --theme-bg-header: #111111;
+    --theme-bg-main: #0a0a0a;
+    --theme-primary: #FFD700;
+    --theme-text-main: #ffffff;
+    --theme-text-muted: #aaaaaa;
+    --theme-bubble-left: #222222;
+    --theme-bubble-right-text: #000000;
+  }
+
+  body {
+    @apply bg-bg-deep text-text-main overflow-hidden h-screen w-screen m-0 p-0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  #root {
+    @apply h-full w-full;
+  }
+}
